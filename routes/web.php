@@ -15,5 +15,5 @@
 */
 
 $router->group(['prefix' => '/api'], function () use ($router) {
-    $router->get('/character', 'SeriesController@index');
+    $router->get('/character', 'CharactersController@index');
 });
