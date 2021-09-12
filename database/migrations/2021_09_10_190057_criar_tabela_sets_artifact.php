@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriarTabelaCharacters extends Migration
+class CriarTabelaSetsArtifact extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CriarTabelaCharacters extends Migration
      */
     public function up()
     {
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('sets_artifact', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('up_atributte');
-            $table->string('element');
-            $table->string('weapon_type');
+            $table->string('2_piece');
+            $table->string('4_piece')->default('');
+            $table->integer('artifact');
+
+            $table->foreign('artifact')->references('artifact')->on('id');
         });
     }
 
@@ -29,6 +31,6 @@ class CriarTabelaCharacters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characters');
+        Schema::dropIfExists('sets_artifact');
     }
 }

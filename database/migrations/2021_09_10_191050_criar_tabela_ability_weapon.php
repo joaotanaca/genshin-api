@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriarTabelaCharacters extends Migration
+class CriarTabelaAbilityWeapon extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CriarTabelaCharacters extends Migration
      */
     public function up()
     {
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('ability_weapon', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('up_atributte');
-            $table->string('element');
-            $table->string('weapon_type');
+            $table->string('description');
+            $table->integer('weapon');
+
+            $table->foreign('weapon')->references('weapon')->on('id');
         });
     }
 
@@ -29,6 +30,6 @@ class CriarTabelaCharacters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characters');
+        Schema::dropIfExists('ability_weapon');
     }
 }

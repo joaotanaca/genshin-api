@@ -14,6 +14,8 @@
 |
 */
 
-$router->group(['prefix' => '/api'], function () use ($router) {
-    $router->get('/character', 'CharactersController@index');
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('character', 'CharacterController@index');
+    $router->get('character/{id}', 'CharacterController@get');
+    $router->post('character', 'CharacterController@store');
 });
