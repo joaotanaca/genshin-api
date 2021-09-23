@@ -19,7 +19,7 @@ class CharacterController extends Controller
             'up_atributte' => $request->up_atributte,
             'element' => $request->element,
             'weapon_type' => $request->weapon_type,
-            // 'constellation' => $request->constellation,
+            'constellation' => $request->constellation,
         ]);
         return response()->json(
             $character,
@@ -27,7 +27,7 @@ class CharacterController extends Controller
         );
     }
 
-    public function show(int $id)
+    public function show(string $id)
     {
         $character = Character::find($id);
         if (is_null($character)) {
@@ -38,7 +38,7 @@ class CharacterController extends Controller
         );
     }
 
-    public function update(int $id, Request $request)
+    public function update(string $id, Request $request)
     {
         $character = Character::find($id);
 
@@ -52,7 +52,7 @@ class CharacterController extends Controller
             $character
         );
     }
-    public function destroy(int $id)
+    public function destroy(string $id)
     {
         $character = Character::destroy($id);
 

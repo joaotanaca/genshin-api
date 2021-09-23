@@ -18,7 +18,7 @@ class Character extends Model
         'up_atributte',
         'element',
         'weapon_type',
-        // 'constellation' => 'json'
+        'constellation'
     ];
 
     // public function weapons()
