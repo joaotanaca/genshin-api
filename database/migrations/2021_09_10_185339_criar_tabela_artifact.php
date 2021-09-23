@@ -16,9 +16,9 @@ class CriarTabelaArtifact extends Migration
         Schema::create('artifact', function (Blueprint $table) {
             $table->id();
             $table->string('attribute_focuses');
-            $table->integer('character');
+            // $table->bigIncrements('character');
 
-            $table->foreign('character')->references('characters')->on('id');
+            // $table->foreign('character')->references('characters')->on('id');
         });
     }
 

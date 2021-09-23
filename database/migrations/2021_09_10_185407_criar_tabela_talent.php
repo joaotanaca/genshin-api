@@ -18,9 +18,9 @@ class CriarTabelaTalent extends Migration
             $table->string('name');
             $table->string('typeAttack');
             $table->integer('level');
-            $table->integer('character');
+            // $table->bigIncrements('character');
 
-            $table->foreign('character')->references('characters')->on('id');
+            // $table->foreign('character')->references('characters')->on('id');
         });
     }
 

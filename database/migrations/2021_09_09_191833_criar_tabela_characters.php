@@ -14,11 +14,12 @@ class CriarTabelaCharacters extends Migration
     public function up()
     {
         Schema::create('characters', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
             $table->string('name');
             $table->string('up_atributte');
             $table->string('element');
             $table->string('weapon_type');
+            // $table->json('constellation');
         });
     }
 

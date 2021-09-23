@@ -19,9 +19,9 @@ class CriarTabelaWeapon extends Migration
             $table->string('base_atk');
             $table->string('rarity');
             $table->json('unique_attribute');
-            $table->integer('character');
+            // $table->bigIncrements('character');
 
-            $table->foreign('character')->references('characters')->on('id');
+            // $table->foreign('character')->references('characters')->on('id');
         });
     }
 
