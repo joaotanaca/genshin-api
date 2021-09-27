@@ -11,7 +11,7 @@ class Character extends Model
 
     public $timestamps = false;
 
-    protected $hidden = ['increments'];
+    // protected $hidden = ['increments'];
 
     protected $fillable = [
         'name',
@@ -20,19 +20,4 @@ class Character extends Model
         'weapon_type',
         'constellation'
     ];
-
-    // public function weapons()
-    // {
-    //     return $this->hasMany(Weapon::class);
-    // }
-
-    // public function artifacts()
-    // {
-    //     return $this->hasOne(Artifact::class);
-    // }
-
-    // public function talents()
-    // {
-    //     return $this->hasMany(Talent::class);
-    // }
 }

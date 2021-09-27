@@ -9,7 +9,7 @@ class CharacterController extends Controller
 {
     public function index()
     {
-        return Character::all()->makeHidden(['increments']);
+        return Character::all();
     }
 
     public function store(Request $request)
