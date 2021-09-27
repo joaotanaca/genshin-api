@@ -16,7 +16,7 @@ class CriarTabelaUser extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
             $table->string('name')->require();
-            $table->string('email')->require();
+            $table->string('email')->require()->unique();
             $table->string('password')->require();
             $table->timestamps();
         });

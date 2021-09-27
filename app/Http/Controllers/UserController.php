@@ -6,7 +6,6 @@ use App\Http\Validations\UserValidation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -19,11 +18,19 @@ class UserController extends Controller
     {
         $this->validate($request, UserValidation::$rules, UserValidation::$messages);
 
+        if (User::where('email', $request->email)->first()) {
+            return response()->json(
+                ['error' => 'Email já existente'],
+                400
+            );
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
         return response()->json(
             $user,
             201
