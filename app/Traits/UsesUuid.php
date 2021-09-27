@@ -16,7 +16,7 @@ trait UsesUuid
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = Str::uuid()->toString();
+            $model->id = str_replace('-', '', Str::uuid()->toString());
         });
     }
 
