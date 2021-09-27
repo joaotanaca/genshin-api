@@ -9,9 +9,6 @@ class Character extends Model
 {
     use UsesUuid;
 
-    public $timestamps = false;
-
-    // protected $hidden = ['increments'];
 
     protected $fillable = [
         'name',

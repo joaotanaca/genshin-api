@@ -17,9 +17,16 @@
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'character'], function () use ($router) {
         $router->get('', 'CharacterController@index');
-        $router->post('', 'CharacterController@store');
+        $router->post('', ['middleware' => 'auth', 'uses' => 'CharacterController@store']);
         $router->get('{id}', 'CharacterController@show');
-        $router->put('{id}', 'CharacterController@update');
-        $router->delete('{id}', 'CharacterController@destroy');
+        $router->put('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@update']);
+        $router->delete('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@destroy']);
+    });
+    $router->group(['prefix' => 'user'], function () use ($router) {
+        $router->get('', 'UserController@index');
+        $router->post('', 'UserController@store');
+        // $router->get('{id}', 'CharacterController@show');
+        // $router->put('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@update']);
+        // $router->delete('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@destroy']);
     });
 });

@@ -23,6 +23,7 @@ class CriarTabelaCharacters extends Migration
             $table->json('artifact')->nullable();
             $table->json('talent')->nullable();
             $table->json('weapon')->nullable();
+            $table->timestamps();
         });
     }
 
