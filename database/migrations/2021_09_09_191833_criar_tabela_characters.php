@@ -20,6 +20,9 @@ class CriarTabelaCharacters extends Migration
             $table->string('element');
             $table->string('weapon_type');
             $table->json('constellation')->nullable();
+            $table->json('artifact')->nullable();
+            $table->json('talent')->nullable();
+            $table->json('weapon')->nullable();
         });
     }
 

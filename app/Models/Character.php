@@ -18,6 +18,9 @@ class Character extends Model
         'up_atributte',
         'element',
         'weapon_type',
-        'constellation'
+        'constellation',
+        'artifact',
+        'talent',
+        'weapon',
     ];
 }
