@@ -22,17 +22,23 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->put('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@update']);
         $router->delete('{id}', ['middleware' => 'auth', 'uses' => 'CharacterController@destroy']);
     });
+    
     $router->group(['prefix' => 'user'], function () use ($router) {
         $router->get('', 'UserController@index');
         $router->post('', 'UserController@store');
         $router->get('profile', 'UserController@profile');
     });
+
     $router->group([
         'prefix' => 'auth',
     ], function ($router) {
         $router->post('login', 'AuthController@login');
-        $router->post('logout', ['middleware' => 'auth', 'uses' => 'AuthController@logout']);
-        $router->post('refresh', ['middleware' => 'auth', 'uses' => 'AuthController@refresh']);
-        $router->post('me', ['middleware' => 'auth', 'uses' => 'AuthController@me']);
+        $router->group([
+            'middleware' => 'auth'
+        ], function ($router) {
+            $router->post('logout',  'AuthController@logout');
+            $router->post('refresh', 'AuthController@refresh');
+            $router->post('me', 'AuthController@me');
+        });
     });
 });
