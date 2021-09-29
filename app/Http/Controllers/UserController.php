@@ -5,13 +5,52 @@ namespace App\Http\Controllers;
 use App\Http\Validations\UserValidation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Get all User.
+     *
+     * @return Response
+     */
     public function index()
     {
         return User::all();
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return Response
+     */
+    public function profile()
+    {
+        return response()->json(['user' => Auth::user()], 200);
+    }
+
+
+    /**
+     * Get one user.
+     *
+     * @return Response
+     */
+    public function singleUser($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            return response()->json(['user' => $user], 200);
+        } catch (\Exception $e) {
+
+            return response()->json(['message' => 'user not found!'], 404);
+        }
     }
 
     public function store(Request $request)
@@ -36,44 +75,4 @@ class UserController extends Controller
             201
         );
     }
-
-    // public function show(string $id)
-    // {
-    //     $character = Character::find($id);
-    //     if (is_null($character)) {
-    //         return response('', 204);
-    //     }
-    //     $character->constellation = json_decode($character->constellation);
-    //     $character->artifact = json_decode($character->artifact);
-    //     $character->talent = json_decode($character->talent);
-    //     $character->weapon = json_decode($character->weapon);
-    //     return response()->json(
-    //         $character
-    //     );
-    // }
-
-    // public function update(string $id, Request $request)
-    // {
-    //     $character = Character::find($id);
-
-    //     if (is_null($character)) {
-    //         return response('', 204);
-    //     }
-
-    //     $character->fill($request->all());
-    //     $character->save();
-    //     return response()->json(
-    //         $character
-    //     );
-    // }
-    // public function destroy(string $id)
-    // {
-    //     $character = Character::destroy($id);
-
-    //     if ($character === 0) {
-    //         return response()->json(['erro' => 'Personagem não encontrado'], 404);
-    //     }
-
-    //     return response()->json('', 204);;
-    // }
 }
